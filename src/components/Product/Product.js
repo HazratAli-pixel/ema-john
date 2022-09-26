@@ -8,8 +8,8 @@ const Product = ({product, handleAddToCart}) => {
     const { name, img, seller, price, ratings } = product;
     
     return (
-        <div className='col-4 pb-2 ps-2 pe-2'>
-            <div className="card h-100 position-relative">
+        <div className='col-4 pb-2 ps-2 pe-2' >
+            <div className="card h-100 position-relative" data-aos="fade-up" data-aos-duration="3000">
                 <div className='p-2'>
                     <img src={img} className="card-img-top rounded-3" onError={(e)=>{e.currentTarget.src='https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/856e874762eb48da8e22acda00efaeb4_9366/Tiro_Track_Pants_Black_GN5490_21_model.jpg'}} alt=""></img>
                 </div>
