@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
-import Order from '../Cart/Cart';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
+    const [Change, setChange] = useState(false)
 
     useEffect( () =>{
         fetch('products.json')
@@ -25,8 +26,12 @@ const Shop = () => {
         }
        }
        setCart(saveCart);
-    },[products])
+    },[products, Change])
     
+    const removeLocalStorage = () => {
+        localStorage.removeItem('shopping-cart');
+        setChange(!Change);
+    }
     const handleAddToCart = (selectedProduct) =>{
         // do not do this: cart.push(product);
         let newCart = [];
@@ -58,7 +63,7 @@ const Shop = () => {
                     }
                 </div>
                 <div className="col-3 order rounded-2">
-                    <Order cart= {cart}></Order>
+                    <Cart cart= {cart} removeLocalStorage = {removeLocalStorage}></Cart>
                 </div>
             </div>
         </div>
